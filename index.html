@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#eef2f7" />
+
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef2f7" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  
+
   <title>Operator Contact - Ole Morten Tengesdal</title>
 
   <meta name="description" content="Operator contact information for Ole Morten Tengesdal." />
@@ -13,13 +15,41 @@
 
   <style>
     :root {
-      --bg: #f4f6f8;
+      color-scheme: light;
+
+      --bg-start: #eef2f7;
+      --bg-end: #f8fafc;
       --card: #ffffff;
       --text: #1f2937;
       --muted: #6b7280;
       --primary: #0f766e;
       --primary-dark: #115e59;
       --border: #e5e7eb;
+      --badge-bg: #ccfbf1;
+      --badge-text: #134e4a;
+      --button-secondary-bg: #ffffff;
+      --button-secondary-hover: #f0fdfa;
+      --shadow: rgba(0, 0, 0, 0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+
+        --bg-start: #0f172a;
+        --bg-end: #111827;
+        --card: #111827;
+        --text: #f8fafc;
+        --muted: #cbd5e1;
+        --primary: #2dd4bf;
+        --primary-dark: #14b8a6;
+        --border: #334155;
+        --badge-bg: rgba(45, 212, 191, 0.14);
+        --badge-text: #99f6e4;
+        --button-secondary-bg: #1e293b;
+        --button-secondary-hover: #263449;
+        --shadow: rgba(0, 0, 0, 0.35);
+      }
     }
 
     * {
@@ -29,9 +59,9 @@
     html {
       min-height: 100%;
       height: 100%;
-      background-color: #eef2f7;
+      background-color: var(--bg-start);
     }
-    
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -48,12 +78,11 @@
         calc(24px + env(safe-area-inset-right))
         calc(24px + env(safe-area-inset-bottom))
         calc(24px + env(safe-area-inset-left));
-      box-sizing: border-box;
       position: relative;
       overflow-x: hidden;
-      background-color: #eef2f7;
+      background-color: var(--bg-start);
     }
-    
+
     body::before {
       content: "";
       position: fixed;
@@ -62,17 +91,18 @@
       height: 100vh;
       height: 100svh;
       height: 100dvh;
-      background: linear-gradient(135deg, #eef2f7, #f8fafc);
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
       z-index: -1;
       pointer-events: none;
     }
+
     .card {
       width: 100%;
       max-width: 480px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 20px 50px var(--shadow);
       padding: 32px;
       text-align: center;
       position: relative;
@@ -83,8 +113,8 @@
       display: inline-block;
       padding: 8px 14px;
       border-radius: 999px;
-      background: #ccfbf1;
-      color: #134e4a;
+      background: var(--badge-bg);
+      color: var(--badge-text);
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 20px;
@@ -104,6 +134,7 @@
       margin: 0;
       font-size: 28px;
       line-height: 1.2;
+      color: var(--text);
     }
 
     .subtitle {
@@ -138,6 +169,7 @@
       font-size: 17px;
       font-weight: 600;
       word-break: break-word;
+      color: var(--text);
     }
 
     a {
@@ -169,7 +201,7 @@
 
     .button.primary {
       background: var(--primary);
-      color: white;
+      color: #ffffff;
     }
 
     .button.primary:hover {
@@ -178,12 +210,12 @@
     }
 
     .button.secondary {
-      background: white;
+      background: var(--button-secondary-bg);
       color: var(--primary);
     }
 
     .button.secondary:hover {
-      background: #f0fdfa;
+      background: var(--button-secondary-hover);
       text-decoration: none;
     }
 
@@ -199,7 +231,7 @@
 <body>
   <main class="card">
     <div class="badge">Drone Operator Contact Information</div>
-   
+
     <img
       class="drone-image"
       src="dji%20neo%202.png"
